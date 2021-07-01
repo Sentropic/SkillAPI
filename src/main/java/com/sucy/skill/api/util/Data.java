@@ -64,8 +64,13 @@ public class Data {
                 item.setData(new MaterialData(material, (byte) data));
             }
             if (lore != null && !lore.isEmpty()) {
-                meta.setDisplayName(lore.remove(0));
-                meta.setLore(lore);
+                meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', lore.remove(0)));
+                
+                List<String> coloredLore = new ArrayList<String>();
+                for(String loreStr : lore) {
+                	coloredLore.add(ChatColor.translateAlternateColorCodes('&', loreStr));
+                }
+                meta.setLore(coloredLore);
             }
             if (SkillAPI.getSettings().useOldDurability()) {
                 item.setItemMeta(meta);
